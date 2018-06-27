@@ -1,0 +1,48 @@
+package pucrs.myflight.modelo;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+public class gerenciadorPaises {
+
+  private ArrayList<Pais> paises;
+
+  public GerenciadorPaises() {
+        this.paises = new ArrayList<>();
+  }
+  
+  public void adicionar(Pais pais) {
+        paises.add(pais);
+  } 
+  
+  public ArrayList<Pais> listarTodos() {
+        return new ArrayList<>(paises);
+  }
+   
+  public void carregaDados(String nomeArq) throws IOException{
+        Path path = Oaths.get(nomeArq);
+        try(Scanner sc = new Scanner(Files.newBufferedReader(path, Charset.forName("utf8")))){
+              sc.useDelimiter("[;\n]");
+              String header = sc.nextLine();
+              String nome, sigla;
+              double lati, longi;
+              while (sc.haxNext()){
+                    nome = sc.next();
+                    sigla = sc.next();
+                    lati = sc.nextDouble();
+                    longi = sc.nextDouble();
+                    Geo geo = new Geo(lati, longi);
+                    Pais novo = new Pais(nome, sigla, geo);
+                    adicionar(novo);
+              }
+        }
+  }
+  
+  
+  
+  
+  
+  
+  
+}
