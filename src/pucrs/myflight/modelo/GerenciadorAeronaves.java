@@ -37,7 +37,7 @@ public class GerenciadorAeronaves {
             while (sc.hasNext()){
                 cod = sc.next();
                 des = sc.next();
-                cap = sc.next();
+                cap = sc.nextInt();
                 Aeronave nova = new Aeronave(cod, des, cap);
                 adicionar(nova);
             }
