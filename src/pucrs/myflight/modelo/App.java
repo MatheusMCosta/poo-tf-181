@@ -31,21 +31,31 @@ public class App {
 		*/
 
 		GerenciadorAeronaves gerAvioes = new GerenciadorAeronaves();
-
+		
+	 try {
+            gerAvioes.carregaDados("equipment.dat");
+        } catch (IOException e) {
+            System.out.println("Não foi possível ler equipment.dat!");
+//            System.exit(1);
+        }
+		/*
 		gerAvioes.adicionar(new Aeronave("733", "Boeing 737-300", 140));
 		gerAvioes.adicionar(new Aeronave("73G", "Boeing 737-400", 126));
 		gerAvioes.adicionar(new Aeronave("380", "Airbus Industrie A380", 644));
 		gerAvioes.adicionar(new Aeronave("764", "Boeing 767-400", 304));
+		*/
 		gerAvioes.ordenarDescricao();
-//        gerAvioes.ordenarCodigo();
+		//gerAvioes.ordenarCodigo();
         // Listando em ordem alfabética de descrição:
+		
         System.out.println("\nAeronaves:");
         for(Aeronave av: gerAvioes.listarTodas())
             System.out.println(av);
         System.out.println();
 
         GerenciadorAeroportos gerAero = new GerenciadorAeroportos();
-
+		
+		/*
 		gerAero.adicionar(new Aeroporto("POA", "Salgado Filho Intl",
                 new Geo(-29.9939, -51.1711)));
 		gerAero.adicionar(new Aeroporto("GRU", "São Paulo Guarulhos Intl",
@@ -54,8 +64,16 @@ public class App {
                 new Geo(38.7742, -9.1342)));
 		gerAero.adicionar(new Aeroporto("MIA", "Miami Intl Airport",
                 new Geo(25.7933, -80.2906)));
+		*/
 		gerAero.ordenarNomes();
-
+		
+	 try {
+            gerAero.carregaDados("airports.dat");
+        } catch (IOException e) {
+            System.out.println("Não foi possível ler airports.dat!");
+//            System.exit(1);
+        }	
+		
         System.out.println("\nAeroportos ordenados por nome:\n");
         for(Aeroporto a: gerAero.listarTodos())
             System.out.println(a);
