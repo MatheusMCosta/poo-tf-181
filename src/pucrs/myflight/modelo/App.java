@@ -45,7 +45,7 @@ public class App {
 		gerAvioes.adicionar(new Aeronave("764", "Boeing 767-400", 304));
 		*/
 		gerAvioes.ordenarDescricao();
-		//gerAvioes.ordenarCodigo();
+		gerAvioes.ordenarCodigo();
         // Listando em ordem alfabética de descrição:
 		
         System.out.println("\nAeronaves:");
@@ -80,7 +80,7 @@ public class App {
         System.out.println();
 
 		// Para facilitar a criação de rotas:
-
+	/*
         CiaAerea latam = gerCias.buscarCodigo("JJ");
         CiaAerea gol   = gerCias.buscarCodigo("G3");
         CiaAerea tap   = gerCias.buscarCodigo("TP");
@@ -90,37 +90,46 @@ public class App {
         Aeronave b73g = gerAvioes.buscarCodigo("73G");
         Aeronave a380 = gerAvioes.buscarCodigo("380");
 
-		Aeroporto poa = gerAero.buscarCodigo("POA");
-		Aeroporto gru = gerAero.buscarCodigo("GRU");
-		Aeroporto lis = gerAero.buscarCodigo("LIS");
-		Aeroporto mia = gerAero.buscarCodigo("MIA");
-
+	Aeroporto poa = gerAero.buscarCodigo("POA");
+	Aeroporto gru = gerAero.buscarCodigo("GRU");
+	Aeroporto lis = gerAero.buscarCodigo("LIS");
+	Aeroporto mia = gerAero.buscarCodigo("MIA");
+	
         System.out.println("Distância POA->GRU: "+
             Geo.distancia(poa.getLocal(), gru.getLocal()));
 
         System.out.println("Distâcia GRU->POA: " +
             gru.getLocal().distancia(poa.getLocal()));
-
-		GerenciadorRotas gerRotas = new GerenciadorRotas();
-
-		Rota poagru = new Rota(latam, poa, gru, b733);
+	*/
+	GerenciadorRotas gerRotas = new GerenciadorRotas();
+	/*
+	Rota poagru = new Rota(latam, poa, gru, b733);
         Rota grupoa = new Rota(latam, gru, poa, b733);
         Rota grumia = new Rota(tap, gru, mia, a380);
         Rota grulis = new Rota(tap, gru, lis, a380);
-
+	
         gerRotas.adicionar(grumia);
         gerRotas.adicionar(grulis);
-		gerRotas.adicionar(poagru);
-		gerRotas.adicionar(grupoa);
-//		gerRotas.ordenarCias();
-		gerRotas.ordenarNomesAeroportosCias();
+	gerRotas.adicionar(poagru);
+	gerRotas.adicionar(grupoa);
+	*/
+		
+	gerRotas.ordenarCias();
+	gerRotas.ordenarNomesAeroportosCias();
+		
+	try {
+            gerRotas.carregaDados("routes.dat");
+        } catch (IOException e) {
+            System.out.println("Não foi possível ler routes.dat!");
+//            System.exit(1);
+        }
 
         System.out.println("\nRotas ordenadas:\n");
         for(Rota r: gerRotas.listarTodas())
             System.out.println(r);
         System.out.println();
 
-		LocalDateTime manhacedo = LocalDateTime.of(2018, 3, 29, 8, 0);
+	LocalDateTime manhacedo = LocalDateTime.of(2018, 3, 29, 8, 0);
         LocalDateTime manhameio = LocalDateTime.of(2018, 4, 4, 10, 0);
         LocalDateTime tardecedo = LocalDateTime.of(2018, 4, 4, 14, 30);
         LocalDateTime tardetarde = LocalDateTime.of(2018, 4, 5, 17, 30);
