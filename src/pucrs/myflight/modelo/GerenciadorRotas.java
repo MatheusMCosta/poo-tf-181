@@ -40,6 +40,33 @@ public class GerenciadorRotas {
     public void adicionar(Rota r) {
         rotas.add(r);
     }
+    
+    public void carregaDados(String nomeArq) throws IOException{
+        Path path = Paths.get(nomeArq);
+        try (Scanner sc = new Scanner(Files.newBufferedReader(path, Charset.forName("utf8")))) {
+            sc.useDelimiter("[;\n]");
+            String header = sc.nextLine();
+            String airline, from, to, equip, codeshare;
+            int stops;
+            while (sc.hasNext()){
+                    airline = sc.next();
+                    from = sc.next();
+                    to = sc.next();
+                    codeshare = sc.next();
+                    stops = sc.nextInt();
+                    CiaAeria ciaAeria = new ciaAeria();
+                    ciaAeria = buscarCodigo(airline);
+                    Aeroporto aeroOrigem = new Aeroporto();
+                    aeroOrigem = buscarCodigo(from);
+                    Aeroporto aeroDestino = new Aeroporto();
+                    aeroDestino = buscarCOdigo(to);
+                    Aeronave aeronave = new Aeronave();
+                    aeronave = buscarCodigo(equip);
+                    Rota nova = new Rota(ciaAeria, aeroOrigem, aeroDestino, aeronave);
+                    adicionar(nova);
+            }
+        }
+    }
 
     public ArrayList<Rota> listarTodas() {
         return new ArrayList<>(rotas);
