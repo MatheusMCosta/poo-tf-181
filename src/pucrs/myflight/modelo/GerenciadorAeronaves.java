@@ -26,6 +26,23 @@ public class GerenciadorAeronaves {
                 return a;
         return null;
     }
+    
+    public void carregaDados(String nomeArq) throws IOException{
+        Path path = Paths.get(nomeArq);
+        try (Scanner sc = new Scanner(Files.newBufferedReader(path, Charset.forName("utf8")))) {
+            sc.useDelimiter("[;\n]");
+            String header = sc.nextLine();
+            String cod, des;
+            int cap;
+            while (sc.hasNext()){
+                cod = sc.next();
+                des = sc.next();
+                cap = sc.next();
+                Aeronave nova = new Aeronave(cod, des, cap);
+                adicionar(nova);
+            }
+        }
+    }
 
     public void ordenarDescricao() {
         // Usando Comparable<Aeronave> em Aeronave
