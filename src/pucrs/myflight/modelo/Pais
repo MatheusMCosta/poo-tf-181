@@ -1,0 +1,36 @@
+package pucrs.myflight.modelo;
+
+public class Pais implements Comparable<Pais> {
+	private String nome;
+	private String sigla;
+	private Geo loc;
+	
+	public Pais(String nome, String sigla, Geo loc) {
+		this.nome = nome;
+		this.sigla = sigla;
+		this.loc = loc;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	
+	public String getSigla() {
+		return sigla;
+	}
+	
+	public Geo getLocalizacao() {
+		return loc;
+	}
+
+    @Override
+    public String toString() {
+		
+        return nome + " - " + sigla + " [" + loc.toString() + "]";
+    }
+
+	@Override
+	public int compareTo(Pais outro) {
+		return this.nome.compareTo(outro.nome);
+	}
+}
